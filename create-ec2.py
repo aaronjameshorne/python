@@ -2,9 +2,6 @@ import os
 import boto3
 import sys
 
-
-
-
 ec2 = boto3.resource('ec2')
 
 imageami = input('Enter AMI Image you want to spin up: ')
