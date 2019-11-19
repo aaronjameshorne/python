@@ -3,9 +3,13 @@ import time
 import sys
 import os
 
-def disable_vm():
-    ids = ['i-00c0fb8e8c41a90e1']
+
+
+rm_nodes():
+    list = ['i-0b808541b5ff4e357','i-0fe2703409ed23f55']
+    for nodes in list:
+    ids = [nodes]
     ec2 = boto3.resource('ec2')
     ec2.instances.filter(InstanceIds = ids).terminate()
-
-disable_vm()
+    
+rm_nodes()
