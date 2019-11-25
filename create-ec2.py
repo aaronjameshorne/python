@@ -3,9 +3,8 @@ import boto3
 import sys
 
 ec2 = boto3.resource('ec2')
-user_data_script = """#!/bin/bash
-sudo apt install htop"""
 
+user_data_script = """#!/bin/bash sudo apt install htop"""
 imageami = input('Enter AMI Image you want to spin up: ')
 string_value = str(imageami)
 ami_count = input('number of instances: ')
