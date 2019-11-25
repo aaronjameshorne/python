@@ -17,6 +17,8 @@ def default_ami():
         MaxCount=ami_count_int,
         InstanceType='t2.micro',
         KeyName='webapp'
+        user_data = '''#!/bin/bash
+        echo 'test' > /tmp/hello'''
     )
 
 def user_ami():
@@ -26,6 +28,8 @@ def user_ami():
       MaxCount=ami_count_int,
       InstanceType='t2.micro',
       KeyName='webapp'
+      user_data = '''#!/bin/bash
+      echo 'test' > /tmp/hello'''
     )
 
 if string_value == '':
