@@ -9,6 +9,9 @@ imageami = input('Enter AMI Image you want to spin up: ')
 string_value = str(imageami)
 ami_count = input('number of instances: ')
 ami_count_int = int(ami_count)
+name_plo = input('policy name: ')
+mysg = ec2.create_security_group(GroupName=name_plo,Description='testme')
+mysg.authorize_ingress(CidrIp='0.0.0.0/0', IpProtocol='tcp', FromPort=22, ToPort=22)
 
 
 def default_ami():
@@ -18,6 +21,7 @@ def default_ami():
             MinCount=ami_count_int,
             MaxCount=ami_count_int,
             InstanceType='t2.micro',
+            NetworkInterfaces=[{'DeviceIndex': 0,'AssociatePublicIpAddress': True,'Groups':[mysg.group_id]}],
             KeyName='webapp'
     )
     except:
@@ -33,6 +37,7 @@ def user_ami():
             MinCount=ami_count_int,
             MaxCount=ami_count_int,
             InstanceType='t2.micro',
+            NetworkInterfaces=[{'DeviceIndex': 0,'AssociatePublicIpAddress': True,'Groups':[mysg.group_id]}],
             KeyName='webapp' 
     )
     except:
