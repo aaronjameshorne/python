@@ -4,7 +4,6 @@ import sys
 import traceback
 
 ec2 = boto3.resource('ec2')
-
 imageami = input('Enter AMI Image you want to spin up: ')
 string_value = str(imageami)
 ami_count = input('number of instances: ')
@@ -29,7 +28,6 @@ def default_ami():
         errorFile.write(traceback.format_exc())
         errorFile.close()
         print('Any errors will be logged to aws_log file')
-        
 def user_ami():
     try:
         instances = ec2.create_instances(
