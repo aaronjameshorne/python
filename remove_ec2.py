@@ -1,15 +1,22 @@
 import boto3
-import time
 import sys
 import os
+import traceback
+
+nodes_remove = []
+maxLengthList = 6
 
 
-
-rm_nodes():
-    list = ['i-0b808541b5ff4e357','i-0fe2703409ed23f55']
-    for nodes in list:
-    ids = [nodes]
-    ec2 = boto3.resource('ec2')
-    ec2.instances.filter(InstanceIds = ids).terminate()
-    
-rm_nodes()
+try:
+    while len(nodes_remove) < maxLengthList:
+        user = input('Enter host id: ')
+        nodes_remove.append(user)
+        if user=='':
+            for nodes in nodes_remove:
+                ids = [nodes]
+                ec2 = boto3.resource('ec2')
+                ec2.instances.filter(InstanceIds = ids).terminate()
+except:
+        errorFile = open('aws_log.txt','w')
+        errorFile.write(traceback.format_exc())
+        errorFile.close()
