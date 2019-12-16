@@ -13,11 +13,14 @@ mysg = ec2.create_security_group(GroupName=name_plo,Description='testme')
 mysg.authorize_ingress(CidrIp='0.0.0.0/0', IpProtocol='tcp', FromPort=22, ToPort=22)
 user_data_htop='''
 #!/bin/bash 
+sudo yum -y update
 sudo yum install -y htop
-sudo yum install -y lynx
-sudo yum install -y nginx
 '''
-
+user_data_lynx='''
+#!/bin/bash 
+sudo yum -y update
+sudo yum install -y lynx
+'''
 
 def default_ami():
     try:
@@ -28,7 +31,8 @@ def default_ami():
             InstanceType='t2.micro',
             NetworkInterfaces=[{'DeviceIndex': 0,'AssociatePublicIpAddress': True,'Groups':[mysg.group_id]}],
             KeyName='webapp',
-            UserData=user_data_htop
+            UserData=user_data_htop,
+            UserData=user_data_lynx
     )
     except:
         errorFile = open('aws_log.txt','w')
@@ -44,7 +48,8 @@ def user_ami():
             InstanceType='t2.micro',
             NetworkInterfaces=[{'DeviceIndex': 0,'AssociatePublicIpAddress': True,'Groups':[mysg.group_id]}],
             KeyName='webapp',
-            UserData=user_data_htop
+            UserData=user_data_htop,
+            UserData=user_data_lynx
     )
     except:
         errorFile = open('aws_log.txt','w')
@@ -55,5 +60,6 @@ def user_ami():
 if string_value == '':
     default_ami()
 else: user_ami()
+
 
 
