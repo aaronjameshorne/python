@@ -11,6 +11,11 @@ ami_count_int = int(ami_count)
 name_plo = input('policy name: ')
 mysg = ec2.create_security_group(GroupName=name_plo,Description='testme')
 mysg.authorize_ingress(CidrIp='0.0.0.0/0', IpProtocol='tcp', FromPort=22, ToPort=22)
+user_data='''#!/bin/bash
+sudo yum -y htop
+sudo yum -y nginx
+sudo yum -y lynx
+'''
 
 
 def default_ami():
@@ -21,7 +26,8 @@ def default_ami():
             MaxCount=ami_count_int,
             InstanceType='t2.micro',
             NetworkInterfaces=[{'DeviceIndex': 0,'AssociatePublicIpAddress': True,'Groups':[mysg.group_id]}],
-            KeyName='webapp'
+            KeyName='webapp',
+            UserData=user_data
     )
     except:
         errorFile = open('aws_log.txt','w')
@@ -36,7 +42,8 @@ def user_ami():
             MaxCount=ami_count_int,
             InstanceType='t2.micro',
             NetworkInterfaces=[{'DeviceIndex': 0,'AssociatePublicIpAddress': True,'Groups':[mysg.group_id]}],
-            KeyName='webapp' 
+            KeyName='webapp',
+            UserData=user_data
     )
     except:
         errorFile = open('aws_log.txt','w')
@@ -47,3 +54,5 @@ def user_ami():
 if string_value == '':
     default_ami()
 else: user_ami()
+
+
