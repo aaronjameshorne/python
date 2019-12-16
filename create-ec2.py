@@ -25,7 +25,7 @@ sudo yum install -y git
 cd /home/ec2-user/
 git clone https://github.com/aaronjameshorne/python.git
 sudo yum install epel-release
-sudo yum install nginx
+sudo yum install -y nginx
 sudo systemctl start nginx
 '''
 
