@@ -15,11 +15,13 @@ user_data_htop='''
 #!/bin/bash 
 sudo yum -y update
 sudo yum install -y htop
-'''
-user_data_lynx='''
-#!/bin/bash 
-sudo yum -y update
-sudo yum install -y lynx
+sudo yum install -y vim
+wget -O splunkforwarder-8.0.0-1357bef0a7f6-linux-2.6-x86_64.rpm 'https://www.splunk.com/bin/splunk/DownloadActivityServlet?architecture=x86_64&platform=linux&version=8.0.0&product=universalforwarder&filename=splunkforwarder-8.0.0-1357bef0a7f6-linux-2.6-x86_64.rpm&wget=true'
+sudo rpm -i splunkforwarder-8.0.0-1357bef0a7f6-linux-2.6-x86_64.rpm
+sudo DD_API_KEY=8b47966137e9f64b6005e591020698e8 bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"
+sudo yum install -y git
+cd /home/ec2-user/
+git clone https://github.com/aaronjameshorne/python.git
 '''
 
 def default_ami():
@@ -31,8 +33,7 @@ def default_ami():
             InstanceType='t2.micro',
             NetworkInterfaces=[{'DeviceIndex': 0,'AssociatePublicIpAddress': True,'Groups':[mysg.group_id]}],
             KeyName='webapp',
-            UserData=user_data_htop,
-            UserData=user_data_lynx
+            UserData=user_data_htop
     )
     except:
         errorFile = open('aws_log.txt','w')
@@ -48,8 +49,7 @@ def user_ami():
             InstanceType='t2.micro',
             NetworkInterfaces=[{'DeviceIndex': 0,'AssociatePublicIpAddress': True,'Groups':[mysg.group_id]}],
             KeyName='webapp',
-            UserData=user_data_htop,
-            UserData=user_data_lynx
+            UserData=user_data_htop
     )
     except:
         errorFile = open('aws_log.txt','w')
@@ -60,6 +60,5 @@ def user_ami():
 if string_value == '':
     default_ami()
 else: user_ami()
-
 
 
