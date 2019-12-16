@@ -1,3 +1,4 @@
+
 import os
 import boto3
 import sys
@@ -20,6 +21,8 @@ wget -O splunkforwarder-8.0.0-1357bef0a7f6-linux-2.6-x86_64.rpm 'https://www.spl
 sudo rpm -i splunkforwarder-8.0.0-1357bef0a7f6-linux-2.6-x86_64.rpm
 sudo DD_API_KEY=8b47966137e9f64b6005e591020698e8 bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"
 sudo yum install -y git
+sudo yum install -y sshpass
+sudo yum install -y python
 cd /home/ec2-user/
 git clone https://github.com/aaronjameshorne/python.git
 sudo yum install epel-release
