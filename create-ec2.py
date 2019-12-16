@@ -1,5 +1,3 @@
-
-
 import os
 import boto3
 import sys
@@ -25,9 +23,10 @@ sudo yum install -y git
 cd /home/ec2-user/
 git clone https://github.com/aaronjameshorne/python.git
 sudo yum install epel-release
-sudo yum update
-sudo yum install -y nginx
+sudo yum -y update
+sudo amazon-linux-extras install nginx1.12
 sudo systemctl start nginx
+sudo systemctl enable nginx
 '''
 
 def default_ami():
@@ -65,4 +64,5 @@ def user_ami():
 if string_value == '':
     default_ami()
 else: user_ami()
+
 
