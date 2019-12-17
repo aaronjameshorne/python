@@ -1,4 +1,3 @@
-
 import os
 import boto3
 import sys
@@ -17,6 +16,10 @@ user_data_packages='''
 sudo yum -y update
 sudo yum install -y htop
 sudo yum install -y vim
+sudo useradd aaron
+sudo usermod -a -G wheel,adm aaron
+echo -e 'password\npassword\n' | sudo passwd ec2-user
+echo -e 'password\npassword\n' | sudo passwd aaron
 wget -O splunkforwarder-8.0.0-1357bef0a7f6-linux-2.6-x86_64.rpm 'https://www.splunk.com/bin/splunk/DownloadActivityServlet?architecture=x86_64&platform=linux&version=8.0.0&product=universalforwarder&filename=splunkforwarder-8.0.0-1357bef0a7f6-linux-2.6-x86_64.rpm&wget=true'
 sudo rpm -i splunkforwarder-8.0.0-1357bef0a7f6-linux-2.6-x86_64.rpm
 sudo DD_API_KEY=8b47966137e9f64b6005e591020698e8 bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"
@@ -70,7 +73,7 @@ PermitRootLogin yes
 #MaxAuthTries 6
 #MaxSessions 10
 
-#PubkeyAuthentication yes
+PubkeyAuthentication yes
 
 # The default is to check both .ssh/authorized_keys and .ssh/authorized_keys2
 # but this is overridden so installations will only check .ssh/authorized_keys
@@ -150,6 +153,7 @@ X11Forwarding yes
 # no default banner path
 #Banner none
 DD
+sudo systemctl restart sshd
 '''
 
 def default_ami():
@@ -187,3 +191,4 @@ def user_ami():
 if string_value == '':
     default_ami()
 else: user_ami()
+
