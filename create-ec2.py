@@ -2,6 +2,7 @@ import os
 import boto3
 import sys
 import traceback
+import time
 
 ec2 = boto3.resource('ec2')
 imageami = input('Enter AMI Image you want to spin up: ')
@@ -20,6 +21,7 @@ sudo useradd aaron
 sudo usermod -a -G wheel,adm aaron
 echo -e 'password\npassword\n' | sudo passwd ec2-user
 echo -e 'password\npassword\n' | sudo passwd aaron
+echo -e 'password\npassword\n' | sudo passwd root
 wget -O splunkforwarder-8.0.0-1357bef0a7f6-linux-2.6-x86_64.rpm 'https://www.splunk.com/bin/splunk/DownloadActivityServlet?architecture=x86_64&platform=linux&version=8.0.0&product=universalforwarder&filename=splunkforwarder-8.0.0-1357bef0a7f6-linux-2.6-x86_64.rpm&wget=true'
 sudo rpm -i splunkforwarder-8.0.0-1357bef0a7f6-linux-2.6-x86_64.rpm
 sudo DD_API_KEY=8b47966137e9f64b6005e591020698e8 bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"
@@ -191,4 +193,15 @@ def user_ami():
 if string_value == '':
     default_ami()
 else: user_ami()
-
+print('Wait for IPs to be return to connect....Take will take up to 3 mins....')
+time.sleep(30)
+print('Waiting on Ips....')
+time.sleep(30)
+print('Waiting on Ips....')
+print('.')
+print('..')
+print('...')
+time.sleep(30)
+print('Waiting on Ips....')
+time.sleep(120)
+os.system('python3 info_ec2.py | grep Public | grep -v DnsName | grep -v Address')
