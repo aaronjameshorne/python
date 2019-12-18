@@ -1,3 +1,4 @@
+
 import os
 import boto3
 import sys
@@ -11,7 +12,16 @@ ami_count = input('number of instances: ')
 ami_count_int = int(ami_count)
 name_plo = input('policy name: ')
 mysg = ec2.create_security_group(GroupName=name_plo,Description='testme')
-mysg.authorize_ingress(CidrIp='0.0.0.0/0', IpProtocol='tcp', FromPort=22, ToPort=22)
+mysg.authorize_ingress(IpPermissions=[
+            {'IpProtocol': 'tcp',
+             'FromPort': 80,
+             'ToPort': 80,
+             'IpRanges': [{'CidrIp': '0.0.0.0/0'}]},
+            {'IpProtocol': 'tcp',
+             'FromPort': 22,
+             'ToPort': 22,
+             'IpRanges': [{'CidrIp': '0.0.0.0/0'}]}
+        ])
 user_data_packages='''
 #!/bin/bash 
 sudo yum -y update
@@ -156,6 +166,15 @@ X11Forwarding yes
 #Banner none
 DD
 sudo systemctl restart sshd
+sudo amazon-linux-extras install -y nginx1
+sudo systemctl start nginx
+sudo rm -f /usr/share/nginx/html/*.*
+cd /usr/share/nginx/html
+sudo git clone https://github.com/aaronjameshorne/ansible.git
+cd  /usr/share/nginx/html/ansible/appointments
+cp index.nginx-debian.html ../../
+cp my_page.html ../../
+sudo mv index.nginx-debian.html index.html
 '''
 
 def default_ami():
@@ -195,7 +214,7 @@ if string_value == '':
 else: user_ami()
 print('Wait for IPs to be return to connect....Take will take up to 3 mins....')
 time.sleep(10)
-print('Waiting on Ips....')
+print('Waiting on Ips..')
 time.sleep(10)
 print('Waiting on Ips......')
 time.sleep(15)
