@@ -1,4 +1,3 @@
-
 import os
 import boto3
 import sys
@@ -174,6 +173,7 @@ sudo git clone https://github.com/aaronjameshorne/ansible.git
 cd  /usr/share/nginx/html/ansible/appointments
 cp index.nginx-debian.html ../../
 cp my_page.html ../../
+cd /usr/share/nginx/html/
 sudo mv index.nginx-debian.html index.html
 '''
 
@@ -221,3 +221,4 @@ time.sleep(15)
 print('Waiting on Ips...........')
 time.sleep(15)
 os.system('python3 info_ec2.py | grep Public | grep -v DnsName | grep -v Address')
+
