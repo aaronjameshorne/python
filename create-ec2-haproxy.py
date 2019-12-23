@@ -168,27 +168,23 @@ DD
 sudo systemctl restart sshd
 cat << DD > /etc/haproxy/haproxy.cfg
 global
-    maxconn 50000
+        daemon
+        maxconn 256
 
+    defaults
+        mode http
+        timeout connect 5000ms
+        timeout client 50000ms
+        timeout server 50000ms
 
-defaults
-    timeout connect 10s
-    timeout client 30s
-    timeout server 30s
-    log global
-    mode http
-    option httplog
-    maxconn 3000
+    frontend http-in
+        bind *:80
+        default_backend servers
 
+    backend servers
+        #balance roundrobin
 
-
-frontend www.mysite.com
-    bind *:80
-
-backend web_servers
-    balance roundrobin
-    default-server check maxconn 20
-    server server1 13.52.103.14 cookie server1
+        server app1 aaronhorne.co:80 maxconn 32
 DD
 sudo systemctl restart haproxy.service
 '''
