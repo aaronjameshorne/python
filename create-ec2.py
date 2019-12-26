@@ -3,7 +3,7 @@ import boto3
 import sys
 import traceback
 import time
-
+import pyperclip
 ec2 = boto3.resource('ec2')
 imageami = input('Enter AMI Image you want to spin up: ')
 string_value = str(imageami)
@@ -28,9 +28,9 @@ sudo yum install -y htop
 sudo yum install -y vim
 sudo useradd aaron
 sudo usermod -a -G wheel,adm aaron
-echo -e 'password\npassword\n' | sudo passwd ec2-user
-echo -e 'password\npassword\n' | sudo passwd aaron
-echo -e 'password\npassword\n' | sudo passwd root
+echo -e 'FreeB$D3\nFreeB$D3\n' | sudo passwd ec2-user
+echo -e 'FreeB$D3\nFreeB$D3\n' | sudo passwd aaron
+echo -e 'FreeB$D3\nFreeB$D3\n' | sudo passwd root
 wget -O splunkforwarder-8.0.0-1357bef0a7f6-linux-2.6-x86_64.rpm 'https://www.splunk.com/bin/splunk/DownloadActivityServlet?architecture=x86_64&platform=linux&version=8.0.0&product=universalforwarder&filename=splunkforwarder-8.0.0-1357bef0a7f6-linux-2.6-x86_64.rpm&wget=true'
 sudo rpm -i splunkforwarder-8.0.0-1357bef0a7f6-linux-2.6-x86_64.rpm
 sudo DD_API_KEY=8b47966137e9f64b6005e591020698e8 bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"
@@ -101,12 +101,12 @@ AuthorizedKeysFile .ssh/authorized_keys
 # Don't read the user's ~/.rhosts and ~/.shosts files
 #IgnoreRhosts yes
 
-# To disable tunneled clear text passwords, change to no here!
-PasswordAuthentication yes
-#PermitEmptyPasswords no
-#PasswordAuthentication no
+# To disable tunneled clear text FreeB$D3s, change to no here!
+FreeB$D3Authentication yes
+#PermitEmptyFreeB$D3s no
+#FreeB$D3Authentication no
 
-# Change to no to disable s/key passwords
+# Change to no to disable s/key FreeB$D3s
 #ChallengeResponseAuthentication yes
 ChallengeResponseAuthentication no
 
@@ -127,11 +127,11 @@ GSSAPICleanupCredentials no
 # Set this to 'yes' to enable PAM authentication, account processing,
 # and session processing. If this is enabled, PAM authentication will
 # be allowed through the ChallengeResponseAuthentication and
-# PasswordAuthentication.  Depending on your PAM configuration,
+# FreeB$D3Authentication.  Depending on your PAM configuration,
 # PAM authentication via ChallengeResponseAuthentication may bypass
-# the setting of "PermitRootLogin without-password".
+# the setting of "PermitRootLogin without-FreeB$D3".
 # If you just want the PAM account and session checks to run without
-# PAM authentication, then enable this but set PasswordAuthentication
+# PAM authentication, then enable this but set FreeB$D3Authentication
 # and ChallengeResponseAuthentication to 'no'.
 # WARNING: 'UsePAM no' is not supported in Red Hat Enterprise Linux and may cause several
 # problems.
@@ -212,13 +212,13 @@ def user_ami():
 if string_value == '':
     default_ami()
 else: user_ami()
-print('Wait for IPs to be return to connect....Take will take up to 3 mins....')
+print('Wait for IPs to be return to connect.')
 time.sleep(10)
 print('Waiting on Ips..')
 time.sleep(10)
 print('Waiting on Ips......')
-time.sleep(15)
+time.sleep(10)
 print('Waiting on Ips...........')
-time.sleep(15)
+time.sleep(10)
 os.system('python3 info_ec2.py | grep Public | grep -v DnsName | grep -v Address')
 
