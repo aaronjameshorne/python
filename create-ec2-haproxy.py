@@ -184,7 +184,7 @@ global
     backend servers
         #balance roundrobin
 
-        server app1 aaronhorne.co:80 maxconn 32
+        server app1 app1.aaronhorne.co:80 maxconn 32
 DD
 sudo systemctl restart haproxy.service
 '''
