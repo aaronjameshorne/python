@@ -224,6 +224,7 @@ def user_ami():
 if string_value == '':
     default_ami()
 else: user_ami()
+            
 print('Wait for IPs to be return to connect....Take will take up to 3 mins....')
 time.sleep(10)
 print('Waiting on Ips..')
