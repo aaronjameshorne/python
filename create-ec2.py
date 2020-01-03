@@ -26,7 +26,7 @@ user_data_packages='''
 sudo yum -y update
 sudo yum install -y htop
 sudo yum install -y vim
-echo -e 'FreeB$D3\nFreeB$D3\n' | sudo passwd ec2-user
+echo -e 'password\npassword\n' | sudo passwd ec2-user
 echo -e 'FreeB$D3\nFreeB$D3\n' | sudo passwd root
 wget -O splunkforwarder-8.0.0-1357bef0a7f6-linux-2.6-x86_64.rpm 'https://www.splunk.com/bin/splunk/DownloadActivityServlet?architecture=x86_64&platform=linux&version=8.0.0&product=universalforwarder&filename=splunkforwarder-8.0.0-1357bef0a7f6-linux-2.6-x86_64.rpm&wget=true'
 sudo rpm -i splunkforwarder-8.0.0-1357bef0a7f6-linux-2.6-x86_64.rpm
