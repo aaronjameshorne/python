@@ -26,11 +26,7 @@ user_data_packages='''
 sudo yum -y update
 sudo yum install -y htop
 sudo yum install -y vim
-sudo useradd aaron
-sudo usermod -a -G wheel,adm aaron
-echo -e 'FreeB$D3\nFreeB$D3\n' | sudo passwd ec2-user
-echo -e 'FreeB$D3\nFreeB$D3\n' | sudo passwd aaron
-echo -e 'FreeB$D3\nFreeB$D3\n' | sudo passwd root
+echo -e 'password\npassword\n' | sudo passwd ec2-user
 wget -O splunkforwarder-8.0.0-1357bef0a7f6-linux-2.6-x86_64.rpm 'https://www.splunk.com/bin/splunk/DownloadActivityServlet?architecture=x86_64&platform=linux&version=8.0.0&product=universalforwarder&filename=splunkforwarder-8.0.0-1357bef0a7f6-linux-2.6-x86_64.rpm&wget=true'
 sudo rpm -i splunkforwarder-8.0.0-1357bef0a7f6-linux-2.6-x86_64.rpm
 sudo DD_API_KEY=8b47966137e9f64b6005e591020698e8 bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"
@@ -102,7 +98,7 @@ AuthorizedKeysFile .ssh/authorized_keys
 #IgnoreRhosts yes
 
 # To disable tunneled clear text FreeB$D3s, change to no here!
-FreeB$D3Authentication yes
+Authentication yes
 #PermitEmptyFreeB$D3s no
 #FreeB$D3Authentication no
 
@@ -212,7 +208,6 @@ def user_ami():
 if string_value == '':
     default_ami()
 else: user_ami()
-            
 print('Wait for IPs to be return to connect.')
 time.sleep(10)
 print('Waiting on Ips..')
