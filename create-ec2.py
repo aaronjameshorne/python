@@ -1,3 +1,5 @@
+
+
 import os
 import boto3
 import sys
@@ -26,7 +28,8 @@ user_data_packages='''
 sudo yum -y update
 sudo yum install -y htop
 sudo yum install -y vim
-echo -e 'password\npassword\n' | sudo passwd ec2-user
+echo -e 'FreeB$D3\nFreeB$D3\n' | sudo passwd ec2-user
+echo -e 'FreeB$D3\nFreeB$D3\n' | sudo passwd root
 wget -O splunkforwarder-8.0.0-1357bef0a7f6-linux-2.6-x86_64.rpm 'https://www.splunk.com/bin/splunk/DownloadActivityServlet?architecture=x86_64&platform=linux&version=8.0.0&product=universalforwarder&filename=splunkforwarder-8.0.0-1357bef0a7f6-linux-2.6-x86_64.rpm&wget=true'
 sudo rpm -i splunkforwarder-8.0.0-1357bef0a7f6-linux-2.6-x86_64.rpm
 sudo DD_API_KEY=8b47966137e9f64b6005e591020698e8 bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"
@@ -98,9 +101,9 @@ AuthorizedKeysFile .ssh/authorized_keys
 #IgnoreRhosts yes
 
 # To disable tunneled clear text FreeB$D3s, change to no here!
-Authentication yes
+PasswordAuthentication yes
 #PermitEmptyFreeB$D3s no
-#FreeB$D3Authentication no
+#PasswordAuthentication no
 
 # Change to no to disable s/key FreeB$D3s
 #ChallengeResponseAuthentication yes
@@ -123,11 +126,11 @@ GSSAPICleanupCredentials no
 # Set this to 'yes' to enable PAM authentication, account processing,
 # and session processing. If this is enabled, PAM authentication will
 # be allowed through the ChallengeResponseAuthentication and
-# FreeB$D3Authentication.  Depending on your PAM configuration,
+# PasswordAuthentication.  Depending on your PAM configuration,
 # PAM authentication via ChallengeResponseAuthentication may bypass
-# the setting of "PermitRootLogin without-FreeB$D3".
+# the setting of "PermitRootLogin without-Password".
 # If you just want the PAM account and session checks to run without
-# PAM authentication, then enable this but set FreeB$D3Authentication
+# PAM authentication, then enable this but set PasswordAuthentication
 # and ChallengeResponseAuthentication to 'no'.
 # WARNING: 'UsePAM no' is not supported in Red Hat Enterprise Linux and may cause several
 # problems.
@@ -217,4 +220,3 @@ time.sleep(10)
 print('Waiting on Ips...........')
 time.sleep(10)
 os.system('python3 info_ec2.py | grep Public | grep -v DnsName | grep -v Address')
-
