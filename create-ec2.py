@@ -1,5 +1,3 @@
-
-
 import os
 import boto3
 import sys
@@ -100,12 +98,12 @@ AuthorizedKeysFile .ssh/authorized_keys
 # Don't read the user's ~/.rhosts and ~/.shosts files
 #IgnoreRhosts yes
 
-# To disable tunneled clear text FreeB$D3s, change to no here!
+# To disable tunneled clear text Passwords, change to no here!
 PasswordAuthentication yes
-#PermitEmptyFreeB$D3s no
-#PasswordAuthentication no
+#PermitEmptyPasswords no
+#Authentication no
 
-# Change to no to disable s/key FreeB$D3s
+# Change to no to disable s/key Passwords
 #ChallengeResponseAuthentication yes
 ChallengeResponseAuthentication no
 
@@ -220,3 +218,4 @@ time.sleep(10)
 print('Waiting on Ips...........')
 time.sleep(10)
 os.system('python3 info_ec2.py | grep Public | grep -v DnsName | grep -v Address')
+
