@@ -1,0 +1,12 @@
+Traceback (most recent call last):
+  File "create-ec2.py", line 189, in default_ami
+    UserData=user_data_packages
+  File "/home/pi/.local/lib/python3.7/site-packages/boto3/resources/factory.py", line 520, in do_action
+    response = action(self, *args, **kwargs)
+  File "/home/pi/.local/lib/python3.7/site-packages/boto3/resources/action.py", line 83, in __call__
+    response = getattr(parent.meta.client, operation_name)(**params)
+  File "/home/pi/.local/lib/python3.7/site-packages/botocore/client.py", line 272, in _api_call
+    return self._make_api_call(operation_name, kwargs)
+  File "/home/pi/.local/lib/python3.7/site-packages/botocore/client.py", line 576, in _make_api_call
+    raise error_class(parsed_response, operation_name)
+botocore.exceptions.ClientError: An error occurred (InvalidAMIID.NotFound) when calling the RunInstances operation: The image id '[ami-0b2d8d1abb76a53d8]' does not exist
