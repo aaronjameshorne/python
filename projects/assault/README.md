@@ -1,4 +1,4 @@
-Python script for loading against webapps. Project testing only. Not to be used for production environments.
+Python script for load testing against webapps. Project testing only. Not to be used for production environments.
 
 # assault
 
