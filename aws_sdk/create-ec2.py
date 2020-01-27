@@ -4,6 +4,8 @@ import sys
 import traceback
 import time
 import pyperclip
+
+
 ec2 = boto3.resource('ec2')
 imageami = input('Enter AMI Image you want to spin up: ')
 string_value = str(imageami)
