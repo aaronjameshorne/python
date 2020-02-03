@@ -34,7 +34,7 @@ def default_ami():
             MaxCount=ami_count_int,
             InstanceType='t2.micro',
             NetworkInterfaces=[{'DeviceIndex': 0,'AssociatePublicIpAddress': True,'Groups':[mysg.group_id]}],
-            KeyName='webapp',
+            KeyName='raspberry_pi',
             UserData=user_data.user_data_packages
     )
     except:
@@ -50,7 +50,7 @@ def user_ami():
             MaxCount=ami_count_int,
             InstanceType='t2.micro',
             NetworkInterfaces=[{'DeviceIndex': 0,'AssociatePublicIpAddress': True,'Groups':[mysg.group_id]}],
-            KeyName='webapp'
+            KeyName='raspberry_pi'
     )
     except:
         errorFile = open('aws_log.txt','w')
