@@ -1,0 +1,10 @@
+plugin: aws_ec2
+regions:
+  - us-west-1
+filters:
+    tag:Environment: dev
+keyed_groups:
+  - key: tags.Name
+    prefix: "app"
+compose:
+ ansible_host: private_ip_address
