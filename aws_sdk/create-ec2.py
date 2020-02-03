@@ -62,12 +62,6 @@ if string_value == '':
     default_ami()
 else: user_ami()
 print('Wait for IPs to be return to connect.')
-time.sleep(10)
-print('Waiting on Ips..')
-time.sleep(10)
-print('Waiting on Ips......')
-time.sleep(10)
-print('Waiting on Ips...........')
-time.sleep(10)
+time.sleep(40)
 os.system('python3 info_ec2.py | grep Public | grep -v DnsName | grep -v Address')
 
