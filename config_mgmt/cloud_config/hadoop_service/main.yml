@@ -1,7 +1,14 @@
----
-- name: Configure apache nodes
-  hosts: apache-host
-  tasks:
-
-  - name: Apache install
-    shell: yum install httpd
+- name: Install Datadog Agent on servers in AWS
+  hosts: datadog:yes
+  become: yes
+  user: ec2-user  #Use the default login for the AWS image. Here we are using a Centos image.
+  roles:
+    - { role: Datadog.datadog, become: yes }
+  vars:
+    datadog_api_key: 
+    datadog_config:
+      tags:
+        - env:dev
+      logs_enabled: true
+      process_config:
+        enabled: "true"
