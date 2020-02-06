@@ -1,0 +1,7 @@
+---
+- name: Configure search catalog nodes
+  hosts: search-index-manager
+  tasks:
+
+  - name: Apache install
+    shell: yum install httpd
