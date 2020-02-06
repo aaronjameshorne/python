@@ -1,6 +1,6 @@
 ---
-- name: Configure search catalog nodes
-  hosts: search-index-manager
+- name: Configure apache nodes
+  hosts: apache-host
   tasks:
 
   - name: Apache install
