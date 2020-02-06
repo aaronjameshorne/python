@@ -1,0 +1,18 @@
+plugin: aws_ec2
+regions:
+  - us-west-1
+filters:
+    # All instances with their `Environment` tag set to `dev`
+    tag:Environment: dev
+keyed_groups:
+  # add hosts to tag_Name_value groups for each aws_ec2 host's tags.Name variable
+  - key: tags.Name
+    prefix: "app"
+
+groups:
+  # add hosts to the group search-index-manager if any of the dictionary's keys or values is the word 'dev'
+  apache-host: "'ims' in tags.Service"
+  
+compose:
+# set the ansible_host variable to connect with the private IP address without changing the hostname
+ ansible_host: private_ip_address
