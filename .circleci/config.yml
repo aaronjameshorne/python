@@ -1,13 +1,19 @@
+version: 2
 jobs:
-  build:
+  run_test:
+    docker:
+      - image: circleci/python3.7.4
     # ...
     steps:
       - checkout  # checkout source code to working directory
-      - run: 
+      - run:
+          name: Install Python Dependencies
           command: |  # use pipenv to install dependencies
-            sudo pip install pipenv
-            pipenv install
-            https://github.com/aaronjameshorne/python.git
-            cd python
-            cd aws_sdk
+            pip install --user -r reuirements.txt
             python3 create_ec2.py
+            
+            
+            
+            
+            
+            
