@@ -1,6 +1,6 @@
 version: 2
 jobs:
-  python:
+  build:
     docker:
       - image: circleci/python3.7.4
     # ...
