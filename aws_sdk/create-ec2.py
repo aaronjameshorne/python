@@ -24,6 +24,12 @@ mysg.authorize_ingress(IpPermissions=[
              'ToPort': 22,
              'IpRanges': [{'CidrIp': '0.0.0.0/0'}]}
         ])
+servers = ec2.instances.all()
+temptags = []
+sometags = {}
+sometags['Key'] = 'Managed by'
+sometags['Value'] = 'Boto3'
+temptags.append(sometags)
 
 
 def default_ami():
@@ -36,7 +42,12 @@ def default_ami():
             NetworkInterfaces=[{'DeviceIndex': 0,'AssociatePublicIpAddress': True,'Groups':[mysg.group_id]}],
             KeyName='raspberry_pi',
             UserData=user_data.user_data_packages
+                        
     )
+    
+        for instance in servers:
+            instance.create_tags(instance.tags, Tags=temptags)
+
     except:
         errorFile = open('aws_log.txt','w')
         errorFile.write(traceback.format_exc())
@@ -51,12 +62,17 @@ def user_ami():
             InstanceType='t2.micro',
             NetworkInterfaces=[{'DeviceIndex': 0,'AssociatePublicIpAddress': True,'Groups':[mysg.group_id]}],
             KeyName='raspberry_pi'
+                         
     )
+        for instance in servers:
+            instance.create_tags(instance.tags, Tags=temptags)
+
     except:
         errorFile = open('aws_log.txt','w')
         errorFile.write(traceback.format_exc())
         errorFile.close()
         print('Any errors will be logged to aws_log file')
+
 
 if string_value == '':
     default_ami()
