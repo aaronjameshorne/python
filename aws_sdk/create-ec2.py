@@ -27,8 +27,8 @@ mysg.authorize_ingress(IpPermissions=[
 servers = ec2.instances.all()
 temptags = []
 sometags = {}
-sometags['Key'] = 'Managed by'
-sometags['Value'] = 'Boto3'
+sometags['Key'] = 'datadog'
+sometags['Value'] = 'yes'
 temptags.append(sometags)
 
 
