@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/python3.7.4
+      - image: circleci/python
     # ...
     steps:
       - checkout  # checkout source code to working directory
