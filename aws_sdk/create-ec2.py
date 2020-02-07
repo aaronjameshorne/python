@@ -45,8 +45,9 @@ def default_ami():
                         
     )
     
-    for instance in servers:
-        instance.create_tags(instance.tags, Tags=temptags)
+        for instance in servers:
+            instance.create_tags(instance.tags, Tags=temptags)
+
     except:
         errorFile = open('aws_log.txt','w')
         errorFile.write(traceback.format_exc())
@@ -63,8 +64,8 @@ def user_ami():
             KeyName='raspberry_pi'
                          
     )
-    for instance in servers:
-        instance.create_tags(instance.tags, Tags=temptags)
+        for instance in servers:
+            instance.create_tags(instance.tags, Tags=temptags)
 
     except:
         errorFile = open('aws_log.txt','w')
