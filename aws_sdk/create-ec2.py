@@ -5,7 +5,7 @@ import traceback
 import time
 import pyperclip
 import user_data
-
+# (2) files must be present for this program operate without any generated errors. info_ec2.py, user_data.py
 
 ec2 = boto3.resource('ec2')
 imageami = input('Enter AMI Image you want to spin up: ')
