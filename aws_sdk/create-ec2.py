@@ -5,7 +5,7 @@ import traceback
 import time
 import pyperclip
 import user_data
-
+# (2) files must be present for this program operate without any generated errors. info_ec2.py, user_data.py
 
 ec2 = boto3.resource('ec2')
 imageami = input('Enter AMI Image you want to spin up: ')
@@ -14,23 +14,13 @@ ami_count = input('number of instances: ')
 ami_count_int = int(ami_count)
 name_plo = input('policy name: ')
 mysg = ec2.create_security_group(GroupName=name_plo,Description='testme')
-mysg.authorize_ingress(IpPermissions=[
-            {'IpProtocol': 'tcp',
-             'FromPort': 80,
-             'ToPort': 80,
-             'IpRanges': [{'CidrIp': '0.0.0.0/0'}]},
-            {'IpProtocol': 'tcp',
-             'FromPort': 22,
-             'ToPort': 22,
-             'IpRanges': [{'CidrIp': '0.0.0.0/0'}]}
-        ])
+mysg.authorize_ingress(IpPermissions=[{'IpProtocol': 'tcp','FromPort': 80,'ToPort': 80,'IpRanges': [{'CidrIp': '0.0.0.0/0'}]},{'IpProtocol': 'tcp','FromPort': 22,'ToPort': 22,'IpRanges': [{'CidrIp': '0.0.0.0/0'}]}])
 servers = ec2.instances.all()
 temptags = []
 sometags = {}
 sometags['Key'] = 'datadog'
 sometags['Value'] = 'yes'
 temptags.append(sometags)
-
 
 def default_ami():
     try:
@@ -42,7 +32,6 @@ def default_ami():
             NetworkInterfaces=[{'DeviceIndex': 0,'AssociatePublicIpAddress': True,'Groups':[mysg.group_id]}],
             KeyName='raspberry_pi',
             UserData=user_data.user_data_packages
-                        
     )
     
         for instance in servers:
@@ -53,6 +42,7 @@ def default_ami():
         errorFile.write(traceback.format_exc())
         errorFile.close()
         print('Any errors will be logged to aws_log file')
+
 def user_ami():
     try:
         instances = ec2.create_instances(
@@ -72,7 +62,6 @@ def user_ami():
         errorFile.write(traceback.format_exc())
         errorFile.close()
         print('Any errors will be logged to aws_log file')
-
 
 if string_value == '':
     default_ami()
