@@ -29,13 +29,13 @@ def setup_bucket(bucket):
     s3_bucket = s3.create_bucket(Bucket='ansible-aws-bucket-site',CreateBucketConfiguration={'LocationConstraint':session.region_name})
     policy = """
      {
-      "Version":"2012-10-17",
-      "Statement":[{
-      "Sid":"PublicReadGetObject",
-      "Effect":"Allow",
-      "Principal": "*",
-          "Action":["s3:GetObject"],
-          "Resource":["arn:aws:s3:::%s/*"
+        "Version":"2012-10-17",
+        "Statement":[{
+        "Sid":"PublicReadGetObject",
+        "Effect":"Allow",
+        "Principal": "*",
+            "Action":["s3:GetObject"],
+            "Resource":["arn:aws:s3:::%s/*"
         ]
       }
       ]
