@@ -1,8 +1,0 @@
-plugin: aws_ec2
-regions: us-west-1
-keyed_groups:
-  # Add hosts to tag_Name_Value groups for each Name/Value tag pair
-  - prefix: tag
-    key: tags
-aws_access_key_id: 
-aws_secret_access_key: 
