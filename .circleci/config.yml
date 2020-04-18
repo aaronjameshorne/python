@@ -7,4 +7,5 @@ jobs:
       - checkout
       - run: sudo pip install -r requirements/dev.txt
       - run: pwd
-      - run: python ~/project/python/flask_site/flaskblog.py
+      - run: ls -a
+      #- run: python ~/project/python/flask_site/flaskblog.py
