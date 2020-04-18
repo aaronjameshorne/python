@@ -6,3 +6,4 @@ jobs:
     steps:
       - checkout
       - run: sudo pip install -r requirements/dev.txt
+      - run: python ~/python/flask_site/flaskblog.py
