@@ -8,4 +8,4 @@ jobs:
       - run: sudo pip install -r requirements/dev.txt
       - run: pwd
       - run: ls -a
-      #- run: python ~/project/python/flask_site/flaskblog.py
+      - run: python ~/project/flask_site/flaskblog.py
