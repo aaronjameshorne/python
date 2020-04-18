@@ -8,7 +8,8 @@ jobs:
       - run: echo "hello world" # run the `echo` command
       - run: sudo apt update
       - run: sudo apt install python-pip
-      - run:
+      - run: sudo apt-get install python3.6
+      - run: sudo apt install python3-pip
           name: install dependencies
           command: |
             python3 -m venv venv
