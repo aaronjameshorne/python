@@ -8,10 +8,8 @@ jobs:
       - run: echo "hello world" # run the `echo` command
       - run: sudo apt update
       - run: sudo apt install python-pip
-      - run: sudo apt-get install software-properties-common
-      - run: sudo add-apt-repository ppa:deadsnakes/ppa
       - run: sudo apt update
-      - run: sudo apt install python3.7
+      - run: sudo apt-get upgrade python3
       - run: sudo apt install python3-pip
       - run: 
           name: install dependencies
