@@ -10,6 +10,7 @@ jobs:
       - run: sudo apt install python-pip
       - run: sudo apt-get install python3.6
       - run: sudo apt install python3-pip
+      - run: 
           name: install dependencies
           command: |
             python3 -m venv venv
