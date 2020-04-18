@@ -10,4 +10,8 @@ jobs:
           name: test site
           command: |
             python ~/project/flask_site/flaskblog.py
+            background: true
+      - run:
+          name: Run Tests
+          command: |
             nose2 --plugin nose2.plugins.junitxml --junit-xml -v
