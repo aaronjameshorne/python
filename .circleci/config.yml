@@ -1,24 +1,8 @@
-version: 2.1
+version: 2
 jobs:
   build:
-    docker: 
-      - image: circleci/node:4.8.2 # the primary container, where your job's commands are run
-    dependencies:
-      pre:
-        - pip install --upgrade pip
-        - pip install --upgrade
-        - if [-e requirements.txt]; the pip install -r requirements.txt;else pip install =r requirements.pip;fi
+    docker:
+      - image: circleci/python:3.6.2-stretch-browsers
     steps:
-      - checkout # check out the code in the project directory
-      - run: echo "hello world" # run the `echo` command
-      - run: sudo apt update
-      - run: sudo apt install python-pip
-      - run: sudo apt update
-      - run: sudo apt-get upgrade python3
-      - run: sudo apt install python3-pip
-      - run: 
-          name: install dependencies
-          command: |
-            pip install -r requirements.txt
-
-
+      - checkout
+      - run: pip install -r requirements/dev.txt
