@@ -109,3 +109,8 @@ Pipfile.lock
 
 # mypy
 .mypy_cache/
+
+# Any *.txt generated logged files
+*.txt
+*.txt*
+.txt
