@@ -11,17 +11,3 @@ jobs:
 #          command: |
 #           python ~/project/flask_site/flaskblog.py
 #            background: true
-
-
-        jobs:
-          build:
-            docker:
-              - image: circleci/python:3.6.2-stretch-browsers
-            steps:
-              - checkout
-              - run: sudo pip install -r requirements/dev.txt
-        #      - run: 
-        #          name: test site
-        #          command: |
-        #           python ~/project/flask_site/flaskblog.py
-        #            background: true
